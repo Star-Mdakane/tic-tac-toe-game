@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {
+    --silver-hover: rgb(219 232 237);
+    --silver: rgb(168 191 201);
+    --navy-semi: rgb(31 54 65);
+    --navy-dark: rgb(26 42 51);
+    --yellow-hover: rgb(255 200 96);
+    --yellow: rgb(242 177 55);
+    --blue-hover: rgb(101 233 228);
+    --blue: rgb(49 195 189);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+button {
+    background-color: none;
+    border: none;
+    padding: 0;
+    outline: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+body {
+    font-family: "Outfit", sans-serif;
+}
+
+.heading {
+    font-size: 2.5rem;
+    letter-spacing: 2.5px;
+    font-weight: 700;
+}
+
+.heading-m {
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+}
+
+.heading-s {
+    font-size: 1.25rem;
+    letter-spacing: 1.25px;
+    font-weight: 700;
+}
+
+.heading-xs {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.body {
+    font-size: 0.875rem;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+}
