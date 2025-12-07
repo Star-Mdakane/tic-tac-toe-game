@@ -63,3 +63,7 @@ body {
     letter-spacing: 0.8px;
     font-weight: 500;
 }
+
+.result-overlay {
+    display: none;
+}
