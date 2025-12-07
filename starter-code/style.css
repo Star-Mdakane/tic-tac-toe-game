@@ -30,6 +30,16 @@ button {
     cursor: pointer;
 }
 
+svg {
+    fill: var(--silver);
+}
+
+.btn {
+    /* box-shadow: inset 0 -4px 0 0 #6B8997; */
+    border-radius: 0.625rem;
+    color: var(--navy-dark);
+}
+
 body {
     font-family: "Outfit", sans-serif;
 }
@@ -64,10 +74,123 @@ body {
     font-weight: 500;
 }
 
-.result-overlay {
+.start-screen {
     display: none;
 }
 
-.start-screen {
+.game {
     display: none;
+}
+
+.result-overlay {
+    /* display: none; */
+}
+
+.app {
+    position: relative;
+    background-color: var(--navy-dark);
+    width: 100vw;
+    height: 100vh;
+}
+
+.result-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0 0 0 / 0.7);
+    display: flex;
+    align-items: center;
+}
+
+.result-wrapper {
+    background-color: var(--navy-dark);
+    width: 100%;
+    height: 16.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.restart-popup {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: fit-content;
+
+    /* justify-content: center; */
+
+    & h1 {
+        color: var(--silver);
+    }
+}
+
+.restart-buttons {
+    display: flex;
+    gap: 1rem;
+
+    & button {
+        padding: 1rem;
+    }
+
+    & button:nth-of-type(1) {
+        background-color: var(--silver);
+        box-shadow: inset 0 -8px 0 0 #6B8997;
+    }
+
+    & button:nth-of-type(2) {
+        background-color: var(--yellow);
+        box-shadow: inset 0 -8px 0 0 #CC8B13;
+    }
+}
+
+.game-result {
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: fit-content;
+
+    & .icon-image {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    & h1,
+    p {
+        color: var(--silver);
+    }
+
+    & button:nth-of-type(1) {
+        background-color: var(--silver);
+        box-shadow: inset 0 -8px 0 0 #6B8997;
+    }
+
+    & button:nth-of-type(2) {
+        background-color: var(--yellow);
+        box-shadow: inset 0 -8px 0 0 #CC8B13;
+    }
+}
+
+.round-winner-icon {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+
+    & h1 {
+        color: var(--blue);
+    }
+}
+
+.round-buttons {
+    display: flex;
+    gap: 1rem;
+
+    & button {
+        padding: 1rem;
+    }
 }
