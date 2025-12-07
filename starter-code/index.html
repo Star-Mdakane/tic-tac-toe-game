@@ -1,14 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
   <title>Frontend Mentor | Tic Tac Toe</title>
 </head>
+
 <body>
+
+  <div class="app">
+    <section class="start-screen">
+
+    </section>
+    <section class="game">
+
+    </section>
+    <secction class="result-overlay">
+      <div class="restart">
+        <h1 class="heading">Restart Game</h1>
+        <div class="restart-buttons">
+          <button class="cancel btn heading-xs" id="cancel">No, Cancel</button>
+          <button class="confirm btn heading-xs" id="confirm">Yes, Restart</button>
+        </div>
+      </div>
+      <div class="game-result">
+        <p class="heading-xs round-winner">
+          You won!
+        </p>
+        <div class="round-winner-icon">
+          <div class="icon-image">
+            <img src="./assets/icon-x.svg" alt="x icon">
+          </div>
+          <h1 class="heading">
+            Takes the round
+          </h1>
+          <div class="round-buttons">
+            <button class="quit heading-xs btn">Quit</button>
+            <button class="next-round btn heading-xs">Next Round</button>
+          </div>
+        </div>
+      </div>
+    </secction>
+  </div>
 
   <!-- New game menu start -->
 
@@ -44,4 +83,5 @@
   <!-- Game board end -->
 
 </body>
+
 </html>
