@@ -67,3 +67,7 @@ body {
 .result-overlay {
     display: none;
 }
+
+.start-screen {
+    display: none;
+}
