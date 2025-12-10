@@ -35,7 +35,6 @@ svg {
 }
 
 .btn {
-    /* box-shadow: inset 0 -4px 0 0 #6B8997; */
     border-radius: 0.625rem;
     color: var(--navy-dark);
 }
@@ -75,7 +74,7 @@ body {
 }
 
 .start-screen {
-    display: none !important;
+    /* display: none !important; */
 }
 
 .game {
@@ -83,7 +82,7 @@ body {
 }
 
 .result-overlay {
-    /* display: none !important; */
+    display: none !important;
 }
 
 .app {
@@ -120,8 +119,6 @@ body {
     align-items: center;
     gap: 2rem;
     width: fit-content;
-
-    /* justify-content: center; */
 
     & h1 {
         color: var(--silver);
@@ -242,6 +239,7 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    width: 100%;
 
     & p {
         color: var(--silver);
@@ -253,12 +251,25 @@ body {
     background-color: var(--navy-dark);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    place-content: center;
+    justify-items: center;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
 
-.player-mark button {
+input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.player-mark label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -267,20 +278,32 @@ body {
     border-radius: 0.5rem;
     color: var(--silver);
     background-color: var(--navy-dark);
-    /* cursor: pointer; */
 }
 
-.player-mark button.active {
+
+
+input[type="radio"]:checked+label {
     color: var(--navy-dark);
     background-color: var(--silver);
 }
 
-.player-mark button:hover:not(.active),
+/* .player-mark button:hover:not(.active),
 .player-mark :focus-visible:hover:not(.active) {
     opacity: 0.7;
-    background-color: var(--navy-semi);
+    background-color: var(--navy-semi)
+} */
 
+/* input[type="radio"]:focus+label:not(.active),
+label:focus-within:not(.active) {
+    opacity: 0.7;
+    background-color: var(--navy-semi)
+} */
+
+label:hover:not(.active) {
+    opacity: 0.7;
+    background-color: var(--navy-semi)
 }
+
 
 .player-mark svg {
     width: 2rem;
@@ -421,7 +444,6 @@ body {
     display: flex;
     gap: 1.25rem;
 
-
     & input {
         width: 100%;
         text-align: center;
@@ -442,7 +464,6 @@ body {
     color: var(--navy-dark);
     border-radius: 0.9375rem;
     padding: 1rem;
-
 }
 
 .x-score {
@@ -455,4 +476,32 @@ body {
 
 .circle-score {
     background-color: var(--yellow);
+}
+
+.cell.x {
+    background-image: url("./assets/icon-x.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 45.7%;
+}
+
+.cell.o {
+    background-image: url("./assets/icon-o.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 45.7%;
+}
+
+.board.turn-x .cell:hover:not(.o):not(.x) {
+    background-image: url("./assets/icon-x-outline.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 45.7%;
+}
+
+.board.turn-o .cell:hover:not(.o):not(.x) {
+    background-image: url("./assets/icon-o-outline.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 45.7%;
 }
