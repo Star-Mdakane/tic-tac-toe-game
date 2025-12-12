@@ -74,11 +74,12 @@ body {
 }
 
 .start-screen {
-    /* display: none !important; */
+    display: none !important;
+    display: flex;
 }
 
 .game {
-    display: none !important;
+    /* display: none !important; */
 }
 
 .result-overlay {
@@ -286,18 +287,6 @@ input[type="radio"]:checked+label {
     color: var(--navy-dark);
     background-color: var(--silver);
 }
-
-/* .player-mark button:hover:not(.active),
-.player-mark :focus-visible:hover:not(.active) {
-    opacity: 0.7;
-    background-color: var(--navy-semi)
-} */
-
-/* input[type="radio"]:focus+label:not(.active),
-label:focus-within:not(.active) {
-    opacity: 0.7;
-    background-color: var(--navy-semi)
-} */
 
 label:hover:not(.active) {
     opacity: 0.7;

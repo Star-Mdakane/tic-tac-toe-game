@@ -52,6 +52,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 1. Design I have chosen desktop view(There is no difference which one you select since the only thing that changes is the size not the UI).
 2. I created the skeleton with some interactivity in mind hence some I used svg instead of images since they need to change color.
 3. I will be working with the css still with the html and javascript in mind.
+4. I had a little difficulty seleccting setting up which player goes first, getting the value since I had made it a button but converted it to radio buttons
+5. Adding the correct marks and setting the hover states was a nightmare and adding the fact that you have to change with the turn
 
 ### Built with
 
