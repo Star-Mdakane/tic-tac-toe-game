@@ -1,6 +1,8 @@
 const board = document.getElementById("board");
+const restart = document.getElementById("restart");
 const cells = document.querySelectorAll("#board .cell");
-const playerSelectBtns = document.querySelectorAll("input[name='playerMark']")
+const playerSelectBtns = document.querySelectorAll("input[name='playerMark']");
+
 
 const selectPlayerTurn = document.querySelector("input[name='playerMark']:checked");
 let playerTurn = selectPlayerTurn ? selectPlayerTurn.value : null;
@@ -39,6 +41,8 @@ function startGame() {
     currentTurn = playerTurn;
 
     cells.forEach(cell => {
+        cell.classList.remove("x", "o");
+        cell.removeEventListener("click", handleCellClick);
         cell.addEventListener("click", handleCellClick, { once: true });
     })
 
@@ -49,6 +53,9 @@ function startGame() {
     }
 }
 
+restart.addEventListener("click", () => {
+    startGame();
+});
 
 
 
