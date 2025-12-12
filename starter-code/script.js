@@ -2,6 +2,16 @@ const board = document.getElementById("board");
 const restart = document.getElementById("restart");
 const cells = document.querySelectorAll("#board .cell");
 const playerSelectBtns = document.querySelectorAll("input[name='playerMark']");
+const combinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+]
 
 
 const selectPlayerTurn = document.querySelector("input[name='playerMark']:checked");
@@ -19,19 +29,24 @@ startGame();
 
 function handleCellClick(e) {
     const cell = e.target;
-    placeMark(cell)
+    placeMark(cell);
+
 }
 
 function placeMark(cell) {
     cell.classList.add(currentTurn);
-    console.log(currentTurn);
 
-    currentTurn = currentTurn == "x" ? "o" : "x";
+    if (checkForWin()) {
+        console.log(`${currentTurn} wins`);
+    } else if (checkForDraw()) {
+        console.log("draw");
+    } else {
 
-    board.classList.toggle("turn-x", currentTurn == "x");
-    board.classList.toggle("turn-o", currentTurn == "o");
+        currentTurn = currentTurn == "x" ? "o" : "x";
 
-
+        board.classList.toggle("turn-x", currentTurn == "x");
+        board.classList.toggle("turn-o", currentTurn == "o");
+    }
 
 }
 
@@ -51,6 +66,28 @@ function startGame() {
     } else {
         board.classList.add("turn-o");
     }
+}
+
+function checkForWin() {
+    return combinations.some(combination => {
+        return combination.every(c => {
+            if (cells[c].classList.contains(currentTurn)) {
+                return true;
+            }
+
+            return false;
+        })
+    })
+}
+
+function checkForDraw() {
+    return Array.from(cells).every(cell => {
+        if (cell.classList.contains("x") || cell.classList.contains("o")) {
+            return true;
+        }
+
+        return false;
+    })
 }
 
 restart.addEventListener("click", () => {
