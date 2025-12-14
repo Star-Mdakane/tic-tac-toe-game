@@ -53,7 +53,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 2. I created the skeleton with some interactivity in mind hence some I used svg instead of images since they need to change color.
 3. I will be working with the css still with the html and javascript in mind.
 4. I had a little difficulty seleccting setting up which player goes first, getting the value since I had made it a button but converted it to radio buttons
-5. Adding the correct marks and setting the hover states was a nightmare and adding the fact that you have to change with the turn
+5. Adding the correct marks and setting the hover states was a nightmare and adding the fact that you have to change with the turn.
+6. Just did the functionality for win and draw, have not done the UI and extra features that come along with it.
 
 ### Built with
 

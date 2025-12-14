@@ -1,5 +1,15 @@
 const board = document.getElementById("board");
+const overlay = document.getElementById("overlay");
 const restart = document.getElementById("restart");
+const confirmBtn = document.getElementById("confirm");
+const cancelBtn = document.getElementById("cancel");
+const xScore = document.getElementById("x-count");
+const oScore = document.getElementById("circle-count");
+const tieScore = document.getElementById("tie-count");
+const quitBtn = document.getElementById("quit");
+const nextBtn = document.getElementById("next");
+const restartPopup = document.querySelector(".restart-popup");
+const gameResultPopup = document.querySelector(".game-result");
 const cells = document.querySelectorAll("#board .cell");
 const playerSelectBtns = document.querySelectorAll("input[name='playerMark']");
 const combinations = [
@@ -17,6 +27,9 @@ const combinations = [
 const selectPlayerTurn = document.querySelector("input[name='playerMark']:checked");
 let playerTurn = selectPlayerTurn ? selectPlayerTurn.value : null;
 let currentTurn;
+let xCount = 0;
+let oCount = 0;
+let tieCount = 0;
 console.log(playerTurn);
 
 playerSelectBtns.forEach(radio => {
@@ -37,8 +50,21 @@ function placeMark(cell) {
     cell.classList.add(currentTurn);
 
     if (checkForWin()) {
+        overlay.classList.add("show");
+        if (currentTurn == "x") {
+            xCount++;
+            xScore.value = xCount;
+        } else {
+            oCount++;
+            oScore.value = oCount;
+        }
         console.log(`${currentTurn} wins`);
+
     } else if (checkForDraw()) {
+        overlay.classList.add("show");
+        tieCount++;
+        tieScore.value = tieCount;
+
         console.log("draw");
     } else {
 
@@ -51,6 +77,7 @@ function placeMark(cell) {
 }
 
 function startGame() {
+    overlay.classList.remove("show");
     board.classList.remove("turn-x", "turn-o");
 
     currentTurn = playerTurn;
@@ -93,6 +120,14 @@ function checkForDraw() {
 restart.addEventListener("click", () => {
     startGame();
 });
+
+quitBtn.addEventListener("click", () => {
+    startGame();
+})
+
+nextBtn.addEventListener("click", () => {
+    startGame();
+})
 
 
 

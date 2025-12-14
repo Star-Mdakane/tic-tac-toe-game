@@ -74,16 +74,20 @@ body {
 }
 
 .start-screen {
-    display: none !important;
-    display: flex;
+    display: none;
+    height: 100%;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
 }
 
 .game {
-    /* display: none !important; */
-}
-
-.result-overlay {
-    display: none !important;
+    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 .app {
@@ -94,14 +98,18 @@ body {
 }
 
 .result-overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgb(0 0 0 / 0.7);
-    display: flex;
     align-items: center;
+}
+
+.result-overlay.show {
+    display: flex;
 }
 
 .result-wrapper {
@@ -115,7 +123,6 @@ body {
 
 .restart-popup {
     display: none;
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
     gap: 2rem;
@@ -124,6 +131,10 @@ body {
     & h1 {
         color: var(--silver);
     }
+}
+
+.restart-popup.show {
+    display: flex;
 }
 
 .restart-buttons {
@@ -157,11 +168,16 @@ body {
     }
 }
 
+.game-result.show {
+    display: flex;
+}
+
 .game-result {
     /* display: none; */
-    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 2rem;
     width: fit-content;
 
@@ -211,18 +227,15 @@ body {
 .round-buttons {
     display: flex;
     gap: 1rem;
+    align-items: center;
+    justify-content: center;
 
     & button {
         padding: 1rem;
     }
 }
 
-.start-screen {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+.start-screen {}
 
 .start-screen-wrapper {
     width: 28.75rem;
@@ -341,13 +354,7 @@ label:hover:not(.active) {
     }
 }
 
-.game {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
+.game {}
 
 .game-wrapper {
     width: 28.75rem;
