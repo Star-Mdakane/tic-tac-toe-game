@@ -15,7 +15,7 @@
 <body>
 
   <div class="app">
-    <section class="start-screen">
+    <section class="start-screen" id="start-screen">
       <div class="start-screen-wrapper">
         <div class="logo">
           <img src="./assets/logo.svg" alt="logo">
@@ -42,15 +42,15 @@
               </label>
             </div>
           </div>
-          <p class="body">Remember: x goes first</p>
+          <p class="body" id="selected-mark">Remember: x goes first</p>
         </div>
-        <div class="new-game">
+        <div class="new-game" id="new-game">
           <button class="vs-cpu btn heading-s">new game (vs cpu)</button>
           <button class="vs-player btn heading-s">new game (vs player)</button>
         </div>
       </div>
     </section>
-    <section class="game">
+    <section class="game" id="game">
       <div class="game-wrapper">
         <div class="game-header">
           <div class="logo">
@@ -85,15 +85,15 @@
         </div>
         <div class="score-count">
           <div class="x-score">
-            <p class="body">x (you)</p>
+            <p class="body" id="x-score">x (you)</p>
             <input class="heading-m" type="number" id="x-count" value="0" disabled>
           </div>
-          <div class="tied-score">
+          <div class="tied-score" id="tied-score">
             <p class="body">ties</p>
             <input class="heading-m" type="number" id="tie-count" value="0" disabled>
           </div>
           <div class="circle-score">
-            <p class="body">o (cpu)</p>
+            <p class="body" id="circle-score">o (cpu)</p>
             <input class="heading-m" type="number" id="circle-count" value="0" disabled>
           </div>
         </div>

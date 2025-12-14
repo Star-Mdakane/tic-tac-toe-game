@@ -1,5 +1,7 @@
 const board = document.getElementById("board");
 const overlay = document.getElementById("overlay");
+const gameScreen = document.getElementById("game");
+const startScreen = document.getElementById("start-screen");
 const restart = document.getElementById("restart");
 const confirmBtn = document.getElementById("confirm");
 const cancelBtn = document.getElementById("cancel");
@@ -8,9 +10,13 @@ const oScore = document.getElementById("circle-count");
 const tieScore = document.getElementById("tie-count");
 const quitBtn = document.getElementById("quit");
 const nextBtn = document.getElementById("next");
+const xPlay = document.getElementById("x-score");
+const oPlay = document.getElementById("circle-score");
+const newGameCpu = document.querySelector("#new-game .vs-cpu");
+const newGamePlayer = document.querySelector("#new-game .vs-player");
 const roundWinner = document.getElementById("round-winner");
 const turnDisplay = document.querySelector(".current-turn-svg");
-const iconImage = document.querySelector(" .icon-image");
+const iconImage = document.querySelector(".icon-image");
 const winnerText = document.querySelector("#winText");
 const restartPopup = document.querySelector(".restart-popup");
 const gameResultPopup = document.querySelector(".game-result");
@@ -40,6 +46,45 @@ playerSelectBtns.forEach(radio => {
     radio.addEventListener("change", (e) => {
         playerTurn = e.target.value;
     })
+})
+
+newGameCpu.addEventListener("click", () => {
+    const player = prompt("Please provide name", "Player");
+    //Go to game screen
+    startScreen.style.display = "none";
+    gameScreen.style.display = "flex";
+
+
+    // Scores UI
+    if (playerTurn == "x") {
+        xPlay.textContent = `x (${player})`;
+        oPlay.textContent = "o (Cpu)";
+    } else {
+        xPlay.textContent = "x (Cpu)";
+        oPlay.textContent = `o (${player}})`;
+    }
+})
+
+newGamePlayer.addEventListener("click", () => {
+    const player1 = prompt("Select player 1", "player1");
+    const player2 = prompt("Select player 2", "player2");
+    console.log("vs player");
+    //Go to game screen
+    startScreen.style.display = "none";
+    gameScreen.style.display = "flex";
+
+    //Scores UI
+
+    xPlay.textContent = `x (${player1})`;
+    oPlay.textContent = `o (${player2})`;
+
+    // if (playerTurn == "x") {
+    //     xPlay.textContent = `x (${player1})`;
+    //     oPlay.textContent = `o (${player2})`;
+    // } else {
+    //     xPlay.textContent = `x (${player2})`;
+    //     oPlay.textContent = `o (${player1})`;
+    // }
 })
 
 startGame();
@@ -112,14 +157,13 @@ function placeMark(cell) {
         board.classList.toggle("turn-x", currentTurn == "x");
         board.classList.toggle("turn-o", currentTurn == "o");
     }
-
 }
 
 function startGame() {
     overlay.classList.remove("show");
     board.classList.remove("turn-x", "turn-o");
 
-    currentTurn = playerTurn;
+    currentTurn = "x";
 
     cells.forEach(cell => {
         cell.classList.remove("x", "o");
@@ -154,10 +198,14 @@ function quitGame(xCount, oCount, tieCount) {
     }
 
     //Back to start screen
+    startScreen.style.display = "flex";
+    gameScreen.style.display = "none";
 
     xScore.value = xCount;
     oScore.value = oCount;
     tieScore.value = tieCount;
+
+    playerTurn = "x"
 }
 
 function checkForWin() {
