@@ -40,6 +40,7 @@ let currentTurn;
 let xCount = 0;
 let oCount = 0;
 let tieCount = 0;
+let vsCpu = false;
 
 playerSelectBtns.forEach(radio => {
     radio.addEventListener("change", (e) => {
@@ -62,7 +63,9 @@ newGameCpu.addEventListener("click", () => {
         oPlay.textContent = `o (${player}})`;
     }
 
+
     againstCpu();
+    return vsCpu = true;
 })
 
 newGamePlayer.addEventListener("click", () => {
@@ -81,13 +84,15 @@ newGamePlayer.addEventListener("click", () => {
 
 })
 
+console.log(vsCpu);
+
 // startGame();
 
-// function handleCellClick(e) {
-//     const cell = e.target;
-//     placeMark(cell);
+function handleCellClick(e) {
+    const cell = e.target;
+    placeMark(cell);
 
-// }
+}
 
 
 function placeMark(cell) {
@@ -166,7 +171,7 @@ function makeCpuMove() {
     placeMark(cpuCell);
 }
 
-function handleCellClick(e) {
+function handleCpuClick(e) {
     const cell = e.target;
     if (playerTurn === currentTurn) { // Player's turn
         placeMark(cell);
@@ -177,21 +182,6 @@ function handleCellClick(e) {
     }
 }
 
-// function smartMove(emptyCells, cpuCell) {
-//     combinations.some(combination => {
-//         if (combination.length == 1) {
-//             placeMark(cpuCell)
-//         }
-//         else if (combination.length == 2) {
-//             combination.every(c => {
-//                 if (cells[c].classList.contains(currentTurn)) {
-//                     placeMark()
-//                 }
-//             })
-//         }
-//     })
-// }
-
 function againstCpu() {
     console.log("Start cpu");
     overlay.classList.remove("show");
@@ -199,8 +189,8 @@ function againstCpu() {
     currentTurn = "x";
     cells.forEach(cell => {
         cell.classList.remove("x", "o");
-        cell.removeEventListener("click", handleCellClick);
-        cell.addEventListener("click", handleCellClick, { once: true });
+        cell.removeEventListener("click", handleCpuClick);
+        cell.addEventListener("click", handleCpuClick, { once: true });
     });
     if (playerTurn === "o") {
         // CPU starts

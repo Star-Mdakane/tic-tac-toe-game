@@ -95,6 +95,7 @@ body {
     background-color: var(--navy-dark);
     width: 100vw;
     min-height: 100vh;
+    padding: 2rem;
 }
 
 .result-overlay {
@@ -353,8 +354,6 @@ label:hover:not(.active) {
     }
 }
 
-.game {}
-
 .game-wrapper {
     width: 28.75rem;
     display: flex;
@@ -499,4 +498,102 @@ label:hover:not(.active) {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 45.7%;
+}
+
+@media(max-width: 31.25rem) {
+
+    .app {
+        padding: 2rem 1rem;
+    }
+
+    .result-wrapper {
+        height: 14.25rem;
+    }
+
+    .start-screen-wrapper {
+        width: 20.5rem;
+        gap: 2.5rem;
+    }
+
+    .game-wrapper {
+        width: 20.5rem;
+        gap: 1.25rem;
+    }
+
+    .cell {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 0.9375rem;
+    }
+
+    .score-count {
+        gap: 1.25rem;
+        display: grid;
+        grid-template-columns: 1fr;
+
+        & p {
+            text-align: center;
+        }
+    }
+
+    .game-result {
+        gap: 1rem;
+    }
+
+    .game-result .icon-image {
+        width: 1.875rem;
+        height: 1.875rem;
+
+        & img {
+            width: 100%;
+        }
+    }
+
+    .restart {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--silver);
+        border-radius: 0.625rem;
+        box-shadow: inset 0 -8px 0 0 #6B8997;
+    }
+
+    .player-mark label {
+
+        padding: 0.5rem 3.25rem;
+        width: 100%;
+
+    }
+
+    .heading {
+        font-size: 1.5rem;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+    }
+
+    .heading-m {
+        font-size: 1.25rem;
+        letter-spacing: 1.25px;
+        font-weight: 700;
+    }
+
+    .heading-s {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    .heading-xs {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    .body {
+        font-size: 0.875rem;
+        letter-spacing: 0.8px;
+        font-weight: 500;
+    }
 }
