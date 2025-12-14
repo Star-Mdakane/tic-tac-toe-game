@@ -57,6 +57,7 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 6. Just did the functionality for win and draw, have not done the UI and extra features that come along with it.
 7. Temporary set all the restart and quit button to startgame function but will have to modify it for quit and restart game.
 8. In game buttons mostly working except taking you to other page.
+9. Set the current turn UI
 
 ### Built with
 
