@@ -54,14 +54,21 @@ function placeMark(cell) {
         if (currentTurn == "x") {
             xCount++;
             xScore.value = xCount;
+            restartPopup.classList.remove("show");
+            gameResultPopup.classList.add("show");
         } else {
             oCount++;
             oScore.value = oCount;
+            restartPopup.classList.remove("show");
+            gameResultPopup.classList.add("show");
         }
         console.log(`${currentTurn} wins`);
 
     } else if (checkForDraw()) {
         overlay.classList.add("show");
+        restartPopup.classList.remove("show");
+        gameResultPopup.classList.add("show");
+
         tieCount++;
         tieScore.value = tieCount;
 
@@ -95,6 +102,32 @@ function startGame() {
     }
 }
 
+function quitGame(xCount, oCount, tieCount) {
+
+    overlay.classList.remove("show");
+    board.classList.remove("turn-x", "turn-o");
+
+    currentTurn = playerTurn;
+
+    cells.forEach(cell => {
+        cell.classList.remove("x", "o");
+        cell.removeEventListener("click", handleCellClick);
+        cell.addEventListener("click", handleCellClick, { once: true });
+    })
+
+    if (currentTurn == "x") {
+        board.classList.add("turn-x");
+    } else {
+        board.classList.add("turn-o");
+    }
+
+    //Back to start screen
+
+    xScore.value = xCount;
+    oScore.value = oCount;
+    tieScore.value = tieCount;
+}
+
 function checkForWin() {
     return combinations.some(combination => {
         return combination.every(c => {
@@ -118,11 +151,25 @@ function checkForDraw() {
 }
 
 restart.addEventListener("click", () => {
-    startGame();
+    gameResultPopup.classList.remove("show");
+    overlay.classList.add("show");
+    restartPopup.classList.add("show");
 });
 
-quitBtn.addEventListener("click", () => {
+cancelBtn.addEventListener("click", () => {
+    overlay.classList.remove("show");
+})
+
+confirmBtn.addEventListener("click", () => {
     startGame();
+})
+
+quitBtn.addEventListener("click", () => {
+    xCount = 0;
+    oCount = 0;
+    tieCount = 0;
+    quitGame(xCount, oCount, tieCount);
+    console.log("game quit");
 })
 
 nextBtn.addEventListener("click", () => {

@@ -55,6 +55,8 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 4. I had a little difficulty seleccting setting up which player goes first, getting the value since I had made it a button but converted it to radio buttons
 5. Adding the correct marks and setting the hover states was a nightmare and adding the fact that you have to change with the turn.
 6. Just did the functionality for win and draw, have not done the UI and extra features that come along with it.
+7. Temporary set all the restart and quit button to startgame function but will have to modify it for quit and restart game.
+8. In game buttons mostly working except taking you to other page.
 
 ### Built with
 
