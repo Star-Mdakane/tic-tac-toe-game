@@ -167,7 +167,29 @@ function makeCpuMove() {
     // Make a random move
     const randomIndex = Math.floor(Math.random() * emptyCells.length);
     const cpuCell = emptyCells[randomIndex];
-    console.log(emptyCells);
+
+    for (let combination of combinations) {
+        let cpuCount = 0;
+        let oppponentCount = 0;
+        let emptyIndex = null;
+
+        for (let index of combination) {
+            if (cells[index].classList.contains(currentTurn)) {
+                cpuCount++;
+            } else if (cells[index].classList.contains(currentTurn == "x" ? "o" : "x")) {
+                oppponentCount++;
+            } else {
+                emptyIndex = index;
+            }
+        }
+        if (cpuCount === 2 && emptyIndex !== null) {
+            placeMark(cells[emptyIndex]);
+            return;
+        } else if (oppponentCount == 2 && emptyIndex !== null) {
+            placeMark(cells[emptyIndex]);
+            return;
+        }
+    }
     placeMark(cpuCell);
 }
 
