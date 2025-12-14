@@ -8,7 +8,10 @@ const oScore = document.getElementById("circle-count");
 const tieScore = document.getElementById("tie-count");
 const quitBtn = document.getElementById("quit");
 const nextBtn = document.getElementById("next");
+const roundWinner = document.getElementById("round-winner");
 const turnDisplay = document.querySelector(".current-turn-svg");
+const iconImage = document.querySelector(" .icon-image");
+const winnerText = document.querySelector("#winText");
 const restartPopup = document.querySelector(".restart-popup");
 const gameResultPopup = document.querySelector(".game-result");
 const cells = document.querySelectorAll("#board .cell");
@@ -57,11 +60,20 @@ function placeMark(cell) {
             xScore.value = xCount;
             restartPopup.classList.remove("show");
             gameResultPopup.classList.add("show");
+            iconImage.style.display = "block";
+
+            iconImage.innerHTML = `<img src="./assets/icon-x.svg" alt="x icon">`
+            winnerText.innerHTML = "Takes the round";
+            winnerText.style.color = "rgb(49 195 189)";
         } else {
             oCount++;
             oScore.value = oCount;
             restartPopup.classList.remove("show");
             gameResultPopup.classList.add("show");
+            iconImage.style.display = "block";
+            iconImage.innerHTML = `<img src="./assets/icon-o.svg" alt="o icon">`
+            winnerText.innerHTML = "Takes the round";
+            winnerText.style.color = "rgb(242 177 55)";
         }
         console.log(`${currentTurn} wins`);
 
@@ -69,6 +81,10 @@ function placeMark(cell) {
         overlay.classList.add("show");
         restartPopup.classList.remove("show");
         gameResultPopup.classList.add("show");
+        roundWinner.style.display = "none";
+        iconImage.style.display = "none";
+        winnerText.innerHTML = "Round tied";
+        winnerText.style.color = "rgb(168 191 201)";
 
         tieCount++;
         tieScore.value = tieCount;
@@ -84,8 +100,6 @@ function placeMark(cell) {
             <path fill="#F2B137"
                 d="M32 0c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" />
         </svg>`;
-
-        // let currentSvg = svg1;
 
         currentTurn = currentTurn == "x" ? "o" : "x";
 
