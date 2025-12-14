@@ -58,7 +58,9 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 7. Temporary set all the restart and quit button to startgame function but will have to modify it for quit and restart game.
 8. In game buttons mostly working except taking you to other page.
 9. Set the current turn UI
-
+10. Added the result popup icon and color to wiiner text.
+11. I got assitance on how to make the cpu make moves, my task is to make it make smart moves not just random moves.
+12. I have completed the game but I am trying to improve the intelligence of the cpu moves.
 ### Built with
 
 - Semantic HTML5 markup

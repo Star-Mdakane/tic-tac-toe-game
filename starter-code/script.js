@@ -40,7 +40,6 @@ let currentTurn;
 let xCount = 0;
 let oCount = 0;
 let tieCount = 0;
-console.log(playerTurn);
 
 playerSelectBtns.forEach(radio => {
     radio.addEventListener("change", (e) => {
@@ -54,7 +53,6 @@ newGameCpu.addEventListener("click", () => {
     startScreen.style.display = "none";
     gameScreen.style.display = "flex";
 
-
     // Scores UI
     if (playerTurn == "x") {
         xPlay.textContent = `x (${player})`;
@@ -63,9 +61,13 @@ newGameCpu.addEventListener("click", () => {
         xPlay.textContent = "x (Cpu)";
         oPlay.textContent = `o (${player}})`;
     }
+
+    againstCpu();
 })
 
 newGamePlayer.addEventListener("click", () => {
+    startGame();
+
     const player1 = prompt("Select player 1", "player1");
     const player2 = prompt("Select player 2", "player2");
     console.log("vs player");
@@ -74,26 +76,19 @@ newGamePlayer.addEventListener("click", () => {
     gameScreen.style.display = "flex";
 
     //Scores UI
-
     xPlay.textContent = `x (${player1})`;
     oPlay.textContent = `o (${player2})`;
 
-    // if (playerTurn == "x") {
-    //     xPlay.textContent = `x (${player1})`;
-    //     oPlay.textContent = `o (${player2})`;
-    // } else {
-    //     xPlay.textContent = `x (${player2})`;
-    //     oPlay.textContent = `o (${player1})`;
-    // }
 })
 
-startGame();
+// startGame();
 
-function handleCellClick(e) {
-    const cell = e.target;
-    placeMark(cell);
+// function handleCellClick(e) {
+//     const cell = e.target;
+//     placeMark(cell);
 
-}
+// }
+
 
 function placeMark(cell) {
     cell.classList.add(currentTurn);
@@ -159,7 +154,62 @@ function placeMark(cell) {
     }
 }
 
+function makeCpuMove() {
+    // Find an empty cell
+    const emptyCells = [...cells].filter(cell => !cell.classList.contains("x") && !cell.classList.contains("o"));
+    if (emptyCells.length === 0) return;
+
+    // Make a random move
+    const randomIndex = Math.floor(Math.random() * emptyCells.length);
+    const cpuCell = emptyCells[randomIndex];
+    console.log(emptyCells);
+    placeMark(cpuCell);
+}
+
+function handleCellClick(e) {
+    const cell = e.target;
+    if (playerTurn === currentTurn) { // Player's turn
+        placeMark(cell);
+        if (!checkForWin() && !checkForDraw()) {
+            // CPU's turn
+            setTimeout(makeCpuMove, 1000); // Add a delay for better UX
+        }
+    }
+}
+
+// function smartMove(emptyCells, cpuCell) {
+//     combinations.some(combination => {
+//         if (combination.length == 1) {
+//             placeMark(cpuCell)
+//         }
+//         else if (combination.length == 2) {
+//             combination.every(c => {
+//                 if (cells[c].classList.contains(currentTurn)) {
+//                     placeMark()
+//                 }
+//             })
+//         }
+//     })
+// }
+
+function againstCpu() {
+    console.log("Start cpu");
+    overlay.classList.remove("show");
+    board.classList.remove("turn-x", "turn-o");
+    currentTurn = "x";
+    cells.forEach(cell => {
+        cell.classList.remove("x", "o");
+        cell.removeEventListener("click", handleCellClick);
+        cell.addEventListener("click", handleCellClick, { once: true });
+    });
+    if (playerTurn === "o") {
+        // CPU starts
+        setTimeout(makeCpuMove, 1000);
+    }
+}
+
 function startGame() {
+    console.log("Start game");
     overlay.classList.remove("show");
     board.classList.remove("turn-x", "turn-o");
 
@@ -214,7 +264,6 @@ function checkForWin() {
             if (cells[c].classList.contains(currentTurn)) {
                 return true;
             }
-
             return false;
         })
     })
@@ -225,7 +274,6 @@ function checkForDraw() {
         if (cell.classList.contains("x") || cell.classList.contains("o")) {
             return true;
         }
-
         return false;
     })
 }
@@ -254,10 +302,3 @@ quitBtn.addEventListener("click", () => {
 nextBtn.addEventListener("click", () => {
     startGame();
 })
-
-
-
-
-
-
-
