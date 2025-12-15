@@ -37,10 +37,13 @@ const combinations = [
 const selectPlayerTurn = document.querySelector("input[name='playerMark']:checked");
 let playerTurn = selectPlayerTurn ? selectPlayerTurn.value : null;
 let currentTurn;
+let player;
+let player1;
+let player2;
+let gameMode;
 let xCount = 0;
 let oCount = 0;
 let tieCount = 0;
-let vsCpu = false;
 
 playerSelectBtns.forEach(radio => {
     radio.addEventListener("change", (e) => {
@@ -48,8 +51,10 @@ playerSelectBtns.forEach(radio => {
     })
 })
 
+
 newGameCpu.addEventListener("click", () => {
-    const player = prompt("Please provide name", "Player");
+    gameMode = "cpu";
+    player = prompt("Please provide name", "Player");
     //Go to game screen
     startScreen.style.display = "none";
     gameScreen.style.display = "flex";
@@ -62,17 +67,15 @@ newGameCpu.addEventListener("click", () => {
         xPlay.textContent = "x (Cpu)";
         oPlay.textContent = `o (${player}})`;
     }
-
-
     againstCpu();
-    return vsCpu = true;
+
 })
 
 newGamePlayer.addEventListener("click", () => {
-    startGame();
+    gameMode = "player";
 
-    const player1 = prompt("Select player 1", "player1");
-    const player2 = prompt("Select player 2", "player2");
+    player1 = prompt("Select player 1", "player1");
+    player2 = prompt("Select player 2", "player2");
     console.log("vs player");
     //Go to game screen
     startScreen.style.display = "none";
@@ -82,18 +85,13 @@ newGamePlayer.addEventListener("click", () => {
     xPlay.textContent = `x (${player1})`;
     oPlay.textContent = `o (${player2})`;
 
+    startGame();
 })
-
-console.log(vsCpu);
-
-// startGame();
 
 function handleCellClick(e) {
     const cell = e.target;
     placeMark(cell);
-
 }
-
 
 function placeMark(cell) {
     cell.classList.add(currentTurn);
@@ -103,6 +101,11 @@ function placeMark(cell) {
         if (currentTurn == "x") {
             xCount++;
             xScore.value = xCount;
+            if (gameMode == "player") {
+                roundWinner.textContent = `${player1} wins`;
+            } else {
+                roundWinner.textContent = ``;
+            }
             restartPopup.classList.remove("show");
             gameResultPopup.classList.add("show");
             iconImage.style.display = "block";
@@ -113,6 +116,11 @@ function placeMark(cell) {
         } else {
             oCount++;
             oScore.value = oCount;
+            if (gameMode == "player") {
+                roundWinner.textContent = `${player2} wins`;
+            } else {
+                roundWinner.textContent = ``;
+            }
             restartPopup.classList.remove("show");
             gameResultPopup.classList.add("show");
             iconImage.style.display = "block";
@@ -160,11 +168,9 @@ function placeMark(cell) {
 }
 
 function makeCpuMove() {
-    // Find an empty cell
     const emptyCells = [...cells].filter(cell => !cell.classList.contains("x") && !cell.classList.contains("o"));
     if (emptyCells.length === 0) return;
 
-    // Make a random move
     const randomIndex = Math.floor(Math.random() * emptyCells.length);
     const cpuCell = emptyCells[randomIndex];
 
@@ -195,11 +201,10 @@ function makeCpuMove() {
 
 function handleCpuClick(e) {
     const cell = e.target;
-    if (playerTurn === currentTurn) { // Player's turn
+    if (playerTurn === currentTurn) {
         placeMark(cell);
         if (!checkForWin() && !checkForDraw()) {
-            // CPU's turn
-            setTimeout(makeCpuMove, 1000); // Add a delay for better UX
+            setTimeout(makeCpuMove, 500);
         }
     }
 }
@@ -215,8 +220,7 @@ function againstCpu() {
         cell.addEventListener("click", handleCpuClick, { once: true });
     });
     if (playerTurn === "o") {
-        // CPU starts
-        setTimeout(makeCpuMove, 1000);
+        setTimeout(makeCpuMove, 500);
     }
 }
 
@@ -225,7 +229,7 @@ function startGame() {
     overlay.classList.remove("show");
     board.classList.remove("turn-x", "turn-o");
 
-    currentTurn = "x";
+    currentTurn = playerTurn;
 
     cells.forEach(cell => {
         cell.classList.remove("x", "o");
@@ -238,6 +242,7 @@ function startGame() {
     } else {
         board.classList.add("turn-o");
     }
+
 }
 
 function quitGame(xCount, oCount, tieCount) {
@@ -301,7 +306,11 @@ cancelBtn.addEventListener("click", () => {
 })
 
 confirmBtn.addEventListener("click", () => {
-    startGame();
+    if (gameMode == "cpu") {
+        againstCpu();
+    } else {
+        startGame();
+    }
 })
 
 quitBtn.addEventListener("click", () => {
@@ -312,5 +321,9 @@ quitBtn.addEventListener("click", () => {
 })
 
 nextBtn.addEventListener("click", () => {
-    startGame();
+    if (gameMode == "cpu") {
+        againstCpu();
+    } else {
+        startGame();
+    }
 })
