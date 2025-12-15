@@ -486,14 +486,16 @@ label:hover:not(.active) {
     background-size: 45.7%;
 }
 
-.board.turn-x .cell:hover:not(.o):not(.x) {
+.board.turn-x .cell:hover:not(.o):not(.x),
+.board.turn-x .cell:focus-visible:not(.o):not(.x) {
     background-image: url("./assets/icon-x-outline.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 45.7%;
 }
 
-.board.turn-o .cell:hover:not(.o):not(.x) {
+.board.turn-o .cell:hover:not(.o):not(.x),
+.board.turn-o .cell:focus-visible:not(.o):not(.x) {
     background-image: url("./assets/icon-o-outline.svg");
     background-repeat: no-repeat;
     background-position: center center;
